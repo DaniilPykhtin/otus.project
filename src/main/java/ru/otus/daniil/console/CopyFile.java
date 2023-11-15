@@ -41,10 +41,10 @@ public class CopyFile implements Command {
             return;
         }
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(sourceFile.getAbsoluteFile(), StandardCharsets.UTF_8));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(destinationFile.getAbsoluteFile(), StandardCharsets.UTF_8));
-
+        try (
+                BufferedReader br = new BufferedReader(new FileReader(sourceFile.getAbsoluteFile(), StandardCharsets.UTF_8));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(destinationFile.getAbsoluteFile(), StandardCharsets.UTF_8))) {
+            
             String line;
 
             while ((line = br.readLine()) != null) {
@@ -56,7 +56,7 @@ public class CopyFile implements Command {
 
         } catch (IOException e) {
             System.out.println("Unknown error. Cannot copy file");
-            throw e;
+
         }
     }
 }
