@@ -41,20 +41,6 @@ public class CopyFile implements Command {
             return;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(sourceFile.getAbsoluteFile(), StandardCharsets.UTF_8))) {
-            StringBuilder builder = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                builder.append(line);
-                builder.append(System.lineSeparator());
-                line = br.readLine();
-            }
-        } catch (IOException e) {
-            System.out.println("Unknown error. Cannot read file");
-            throw e;
-        }
-
         try {
             BufferedReader br = new BufferedReader(new FileReader(sourceFile.getAbsoluteFile(), StandardCharsets.UTF_8));
             BufferedWriter bw = new BufferedWriter(new FileWriter(destinationFile.getAbsoluteFile(), StandardCharsets.UTF_8));
